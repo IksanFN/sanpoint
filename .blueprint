@@ -1,0 +1,31 @@
+created:
+    - database/factories/JurusanFactory.php
+    - database/factories/KelasFactory.php
+    - database/factories/TahunAjaranFactory.php
+    - database/factories/KategoriPelanggaranFactory.php
+    - database/factories/SiswaFactory.php
+    - database/factories/PelanggaranFactory.php
+    - database/factories/PrestasiFactory.php
+    - database/migrations/2024_06_21_231614_create_jurusans_table.php
+    - database/migrations/2024_06_21_231615_create_kelas_table.php
+    - database/migrations/2024_06_21_231616_create_tahun_ajarans_table.php
+    - database/migrations/2024_06_21_231617_create_kategori_pelanggarans_table.php
+    - database/migrations/2024_06_21_231618_create_siswas_table.php
+    - database/migrations/2024_06_21_231619_create_pelanggarans_table.php
+    - database/migrations/2024_06_21_231620_create_prestasis_table.php
+    - app/Models/Jurusan.php
+    - app/Models/Kelas.php
+    - app/Models/TahunAjaran.php
+    - app/Models/KategoriPelanggaran.php
+    - app/Models/Siswa.php
+    - app/Models/Pelanggaran.php
+    - app/Models/Prestasi.php
+models:
+    Jurusan: { nama: string, kode: 'string unique', relationships: { hasMany: 'Siswa, Kelas' } }
+    Kelas: { jurusan_id: foreign, nama: string, relationships: { hasMany: Siswa } }
+    Pelanggaran: { siswa_id: foreign, kategori_pelanggaran_id: foreign, deskripsi: 'text nullable' }
+    Prestasi: { siswa_id: foreign, nama: string, point: integer, waktu: date }
+    Siswa: { jurusan_id: foreign, kelas_id: foreign, tahun_ajaran_id: foreign, nisn: string, nama: string, email: 'string unique nullable', nomor_hp: 'string nullable', jenis_kelamin: string, status: string, alamat: 'text nullable', relationships: { hasMany: 'Pelanggaran, Prestasi' } }
+    TahunAjaran: { kode: string, relationships: { hasMany: Siswa } }
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    KategoriPelanggaran: { nama: string, point: integer, relationships: { hasMany: Pelanggaran } }

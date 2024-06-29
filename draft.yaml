@@ -1,0 +1,52 @@
+models:
+  Jurusan:
+    nama: string
+    kode: string unique
+    relationships:
+      hasMany: Siswa, Kelas
+
+  Kelas:
+    jurusan_id: foreign
+    nama: string
+    relationships:
+      hasMany: Siswa
+  
+  TahunAjaran: 
+    kode: string
+    relationships:
+      hasMany: Siswa
+
+  KategoriPelanggaran:
+    nama: string
+    point: integer
+    relationships:
+      hasMany: Pelanggaran
+  
+  Siswa:
+    jurusan_id: foreign
+    kelas_id: foreign
+    tahun_ajaran_id: foreign
+    nisn: string
+    nama: string
+    email: string unique nullable
+    nomor_hp: string nullable
+    jenis_kelamin: string
+    status: string
+    alamat: text nullable
+    relationships:
+      hasMany: Pelanggaran, Prestasi
+    
+  Pelanggaran:
+    siswa_id: foreign
+    kategori_pelanggaran_id: foreign
+    waktu: date
+    deskripsi: text nullable
+  
+  Prestasi:
+    siswa_id: foreign
+    nama: string
+    point: integer
+    waktu: date
+
+controllers:
+  # ...
