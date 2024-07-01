@@ -34,6 +34,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName('School Point')
+            ->databaseNotifications()
             ->login()
             ->colors([
                 'primary' => Color::Purple,
@@ -49,8 +50,8 @@ class AdminPanelProvider extends PanelProvider
                 // Widgets\FilamentInfoWidget::class,
                
                 Stats::class,
-                PelanggaranTerbaru::class,
-                PrestasiTerbaru::class,
+                // PelanggaranTerbaru::class,
+                // PrestasiTerbaru::class,
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\PelanggaranExporter;
 use App\Filament\Resources\PelanggaranResource\Pages;
 use App\Filament\Resources\PelanggaranResource\RelationManagers;
 use App\Filament\Resources\SiswaResource\RelationManagers\PelanggaransRelationManager;
@@ -58,6 +59,14 @@ class PelanggaranResource extends Resource
             ->columns(self::getTableColumns())
             ->filters([
                 //
+            ])
+            ->headerActions([
+                Tables\Actions\ExportAction::make()
+                ->label('Export Excel')
+                ->fileDisk('public')
+                ->color('success')
+                ->icon('heroicon-o-document-text')
+                ->exporter(PelanggaranExporter::class),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

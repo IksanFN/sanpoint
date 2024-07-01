@@ -61,8 +61,12 @@ class PrestasiResource extends Resource
                 //
             ])
             ->headerActions([
-                ExportAction::make()
-                    ->exporter(PrestasiExporter::class)
+                Tables\Actions\ExportAction::make()
+                ->label('Export Excel')
+                ->fileDisk('public')
+                ->color('success')
+                ->icon('heroicon-o-document-text')
+                ->exporter(PrestasiExporter::class),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

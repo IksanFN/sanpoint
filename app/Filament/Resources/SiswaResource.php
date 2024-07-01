@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Enums\JenisKelamin;
 use App\Enums\StatusSiswa;
+use App\Filament\Exports\SiswaExporter;
 use App\Filament\Resources\SiswaResource\Pages;
 use App\Filament\Resources\SiswaResource\RelationManagers;
 use App\Filament\Resources\SiswaResource\RelationManagers\PelanggaransRelationManager;
@@ -125,6 +126,14 @@ class SiswaResource extends Resource
                 SelectFilter::make('status')
                     ->options(StatusSiswa::class)
                     ->searchable(),
+            ])
+            ->headerActions([
+                Tables\Actions\ExportAction::make()
+                ->label('Export Excel')
+                ->fileDisk('public')
+                ->color('success')
+                ->icon('heroicon-o-document-text')
+                ->exporter(SiswaExporter::class),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
