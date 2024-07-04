@@ -3,6 +3,7 @@
 namespace App\Filament\Exports;
 
 use App\Models\Prestasi;
+use App\Models\Siswa;
 use Filament\Actions\Exports\ExportColumn;
 use Filament\Actions\Exports\Exporter;
 use Filament\Actions\Exports\Models\Export;

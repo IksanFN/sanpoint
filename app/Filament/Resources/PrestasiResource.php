@@ -8,6 +8,7 @@ use App\Filament\Resources\PrestasiResource\RelationManagers;
 use App\Filament\Resources\PrestasiResource\Widgets\PrestasiTerbaru;
 use App\Filament\Resources\SiswaResource\RelationManagers\PrestasiRelationManager;
 use App\Models\Prestasi;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,6 +17,7 @@ use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 
 class PrestasiResource extends Resource
 {
@@ -66,7 +68,10 @@ class PrestasiResource extends Resource
                 ->fileDisk('public')
                 ->color('success')
                 ->icon('heroicon-o-document-text')
-                ->exporter(PrestasiExporter::class),
+                ->exporter(PrestasiExporter::class)
+                ->formats([
+                    ExportFormat::Xlsx
+                ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

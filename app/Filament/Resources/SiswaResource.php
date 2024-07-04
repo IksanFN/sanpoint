@@ -11,6 +11,7 @@ use App\Filament\Resources\SiswaResource\RelationManagers\PelanggaransRelationMa
 use App\Filament\Resources\SiswaResource\RelationManagers\PrestasiRelationManager;
 use App\Models\Kelas;
 use App\Models\Siswa;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -133,7 +134,10 @@ class SiswaResource extends Resource
                 ->fileDisk('public')
                 ->color('success')
                 ->icon('heroicon-o-document-text')
-                ->exporter(SiswaExporter::class),
+                ->exporter(SiswaExporter::class)
+                ->formats([
+                    ExportFormat::Xlsx,
+                ]),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([

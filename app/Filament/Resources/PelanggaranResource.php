@@ -7,6 +7,7 @@ use App\Filament\Resources\PelanggaranResource\Pages;
 use App\Filament\Resources\PelanggaranResource\RelationManagers;
 use App\Filament\Resources\SiswaResource\RelationManagers\PelanggaransRelationManager;
 use App\Models\Pelanggaran;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Form;
@@ -66,7 +67,10 @@ class PelanggaranResource extends Resource
                 ->fileDisk('public')
                 ->color('success')
                 ->icon('heroicon-o-document-text')
-                ->exporter(PelanggaranExporter::class),
+                ->exporter(PelanggaranExporter::class)
+                ->formats([
+                    ExportFormat::Xlsx,
+                ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
