@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('jurusan_id')->constrained();
-            $table->foreignId('kelas_id')->constrained('kelas');
+            $table->foreignId('kelas_id')->constrained();
             $table->foreignId('tahun_ajaran_id')->constrained();
             $table->string('nisn');
             $table->string('nama');
